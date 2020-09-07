@@ -15,10 +15,19 @@ class Product(models.Model):
 	name = models.CharField(max_length=200, null=True)
 	price = models.FloatField()
 	digital = models.BooleanField(default=False, null=False, blank=False)
-	## image to be added
+	image = models.ImageField(null=True, blank=True)
 
 	def __str__(self):
 		return self.name
+
+	@property
+	def imageURL(self):
+		try:
+			_imageURL = self.image.url
+		except:
+			_imageURL = ''
+		return _imageURL
+	
 
 
 class Order(models.Model):
@@ -30,12 +39,30 @@ class Order(models.Model):
 	def __str__(self):
 		return str(self.id)
 
+	@property
+	def get_cart_total(self):
+		_orderitems = self.orderitem_set.all()
+		_total = sum([item.get_total for item in _orderitems])
+		return _total
+
+	@property
+	def get_cart_items(self):
+		_orderitems = self.orderitem_set.all()
+		_total = sum([item.quantity for item in _orderitems])
+		return _total
+	
 
 class OrderItem(models.Model):
 	product = models.ForeignKey(Product, on_delete=models.SET_NULL, blank=True, null=True)
 	order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
 	quantity = models.IntegerField(default=0, null=True, blank=True)
 	date_added = models.DateTimeField(auto_now_add=True)
+
+	@property
+	def get_total(self):
+		_total = self.product.price * self.quantity
+		return _total
+	
 
 
 class ShippingAddress(models.Model):

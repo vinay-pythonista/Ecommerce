@@ -4,7 +4,7 @@
 	<div class="row">
 		{% for product in products %}
 		<div class="col-lg-4 p-6">
-			<img class="thumbnail" src="{% static 'images/placeholder.jpeg' %}">
+			<img class="thumbnail" src="{{ product.imageURL }}" onerror=this.src="images/default.jpeg">
 			<div class="box-element product">
 				<h6><strong>{{ product.name }}</strong></h6>
 				<hr>
