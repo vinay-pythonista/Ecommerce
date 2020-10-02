@@ -1,8 +1,9 @@
-# Ecommerce
+# Ecommerce : An Amazing Project--
+
 An ecommerce website created in Django.
 
 ### How to run the app :
-Clone this repository into your machine. Then run the following commands:
+Clone this repository into your machine. Then run the following commands:--
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**1. cd ecommerce**  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**2. python manage.py runserver**  
